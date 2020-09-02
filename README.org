@@ -1,2 +1,11 @@
 * Voltaat Posts
   Few stuff I post on [[https://www.learn.voltaat.com/][Voltaat learn]] from time to time. Mostly for beginners but also useful for quick reference.
+
+  - [[./1-sound][Sound activated LED]]
+  - [[./2-pirrelay][Relay and PIR]]
+  - [[./4-radar][Ultrasonic radar]]
+  - [[./5-dht][DHT with LCD]]
+  - [[./6-rfid][RFID and servo]]
+  - [[./7-level][Accelerometer level]]
+  - [[./8-alarm][Alarm system]]
+  - [[./9-gps][GPS]]
