@@ -1,0 +1,46 @@
+#+TITLE: Light up the room with motion using PIR and relay 💡
+#+AUTHOR: Naheel Faisal Kamal
+
+* Know it
+  Imagine you enter a room. The room is dark and no one is inside. Once you step inside, the room lights up! What kind of magic is that!
+
+  This magic can be created using simple components. Particularly, a PIR motion sensor, a relay, and, of course, an Arduino!
+
+  A PIR motion sensor is simply a sensor that detects whether someone is nearby or not using IR. A more detailed guide for PIR sensor is explained [[https://www.learn.voltaat.com/post/pir-sensor][here]].
+
+  A relay is as simple as a switch but for high voltages. That is, the bulb in our case. More details about relays can be found [[https://www.learn.voltaat.com/post/relay][here]].
+
+
+  *⚠️ Caution ⚠️ We love you and we don't want anything bad to happen to you! This project requires high voltage connections that are dangerous. Please ask for help if you are not familiar with high voltage!*
+
+* Wire it
+  Before jumping to wiring, just keep on mind to keep everything powered off while working. Also, make sure to triple check your connections once done or even better, ask someone to check it as well to be on the safe side!
+
+  Now we can proceed and start getting the needed components and connect them as shown in the picture.
+
+  - PIR motion sensor
+  - Relay
+  - Jumper wires
+  - Breadboard
+  - Arduino board and USB connector
+
+  [[./pir-relay_bb.png]]
+
+  Connections:
+
+  Arduino pin GND                      → Breadboard ground line
+  Arduino pin 5V                       → Breadboard 5V line
+  PIR motion sensor 1st pin from right → Breadboard ground line
+  PIR motion sensor 1st pin from left  → Breadboard 5V line
+  PIR motion sensor Middle pin         → Arduino pin 7
+  Relay GND pin                        → Breadboard ground line
+  Relay VCC pin                        → Breadboard 5V line
+  Relay Signal pin (far right pin)     → Arduino pin 6
+
+  This is of course in addition to connecting the bulb to the relay and the wall socket. But wait! Better to try the code first before connecting it to the socket. Once all is done and the connections are surely perfect, then carefully plug it.
+
+* Code it
+  [[./2-pir-relay.ino]]
+
+* Show it
+  [[./20200520_054843_1.jpg]]

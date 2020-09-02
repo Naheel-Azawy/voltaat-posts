@@ -1,0 +1,60 @@
+#+TITLE: Secure lock with RFID 🔒
+#+AUTHOR: Naheel Faisal Kamal
+
+[[./video_2020-06-17_02-38-59.mp4.gif]]
+[[https://youtu.be/Oa1utVZ7oro][Video]]
+
+* Know it
+  Many workplaces usually have doors that can only unlocked with a staff ID card. From experience... I can tell you that one of the coolest parts of having a job in such places is that moment when many people can't pass that door and you take your card like a super hero, unlock the door, and no body can stop you 😎
+
+  What is used in such doors is what's known as RFID. For our demo, we will be using the MFRC522 with tow or more cards (or tags). Those cards have a tiny chip that store the data in them and a coil to send and receive data. One cool trick that you can try is to pass a flash light behind the card to see the internals. It also worth mentioning that there are two well known types of RFID, High Frequency RFID and Low Frequency RFID. The point is, make sure you know which type you need for your project.
+
+  [[./video_2020-06-17_03-27-46.mp4.gif]]
+
+  To control the lock, we will be using a servo motor (check THIS for more details) and to display the messages we will be using a 16x2 LCD display (check THIS for more details).
+
+* Wire it
+  This time bunch of jumper wires are needed. So make sure you have enough of them. Here are the components needed:
+
+  - MFRC522 RFID
+  - RFID cards (or tags)
+  - 16x2 LCD with I2C driver
+  - Servo motor
+  - Jumper wires and Breadboard
+  - Arduino board and USB connector
+
+  [[./rfid_bb.png]]
+
+  Connections from the Arduino to the breadboard:
+
+  Arduino GND pin → Breadboard ground line
+  Arduino 5V pin  → Breadboard 5V line
+
+  Connections from MFRC522:
+
+  MFRC522 GND     → Breadboard ground line
+  MFRC522 Vcc     → Breadboard 5V line
+  MFRC522 RST     → Arduino pin 9
+  MFRC522 SDA(SS) → Arduino pin 10
+  MFRC522 MOSI    → Arduino pin 11
+  MFRC522 MISO    → Arduino pin 12
+  MFRC522 SCK     → Arduino pin 13
+
+  Connections from the servo motor:
+
+  Servo motor brown wire  → Breadboard ground line
+  Servo motor red wire    → Breadboard 5V line
+  Servo motor orange wire → Arduino pin 4
+
+  Connections from the LCD I2C driver:
+
+  LCD GND → Breadboard ground line
+  LCD Vcc → Breadboard 5V line
+  LCD SDA → Arduino pin A4
+  LCD SCL → Arduino pin A5
+
+* Code it
+  [[./6-rfid.ino]]
+
+* Show it
+  [[./20200617_025127_1.jpg]]

@@ -1,0 +1,32 @@
+#+TITLE: Clap to light up 👏
+#+AUTHOR: Naheel Faisal Kamal
+
+* Know it
+  Do you have a project where you need to turn something on and off? Maybe use a switch and the problem is solved... But... Boring... How about controlling it by clapping!
+
+  A sound sensor can be used for that like the one in the picture below. This sensor works by simple firing a signal at the D0 pin once the sound level is above a certain level. This level can be tuned by rotating the golden screw left and right until it's suitable for your surrounding.
+
+  [[./microphone-voice-sound-sensor-module-500x500.jpg]]
+
+* Wire it
+  The wiring here is a piece of cake! First, make sure you have the following below and connect is shown in the picture.
+
+  - LED
+  - 1K Ω resistor
+  - Jumper wires
+  - Arduino board and USB connector
+
+  [[./sound_bb_1.png]]
+
+  Connections:
+
+  - Sound sensor G   → Arduino pin GND
+  - Sound sensor +   → Arduino pin 5V
+  - Sound sensor D0  → Arduino pin 2
+  - LED              → Arduino pin 3
+
+* Code it
+  [[./1-sound.ino]]
+
+* Show it
+  [[./20200517_065559_1.jpg]]

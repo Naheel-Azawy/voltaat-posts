@@ -1,0 +1,55 @@
+#+TITLE: Use an accelerometer to build a level
+#+AUTHOR: Naheel Faisal Kamal
+
+[[./doc_2020-06-23_21-42-12.mp4.gif]]
+
+* Know it
+  To build our bubble level we will be using an ADXL345 accelerometer. This can be used to know if a surface (say, table) is horizontal or not. Well, that one simple usage of it! ADXL345 can give us the orientation in the 3 dimensions by measuring the acceleration. This means you can use it to know the orientation of your robot or whatever huge project that you can think about. But for the sake of example, we will be building a simple bubble level here.
+
+  [[./real-level.jpg]]
+
+  An LCD screen is used here to display the readings and show a bubble to look closer to a real level (in the x-axis only..) for extra fanciness.
+
+* Wire it
+  The LCD screen we're using here is a 16x2 character display with an I2C driver like the one [[https://www.learn.voltaat.com/post/lcd-i2c][HERE]] and the ADXL345 also uses I2C interface. For this reason both, the LCD and the ADXL345 will be connected to the same pins on the Arduino with the small addition of two 10KΩ (pull-up) resistors. This is possible because I2C data line (SDA) works like bus. More than one component can use the same line. However, every component must have an address (you can see that in the code). The SCL line is just a clock to let components know when to send and receive data (synchronize).
+
+  Enough talking about I2C! Let's wire things up, you'll need:
+
+  - ADXL345 accelerometer
+  - 16x2 LCD with I2C driver
+  - Jumper wires and Breadboard
+  - Arduino board and USB connector
+
+  [[./level_bb_new.png]]
+
+  Connections from the LCD I2C driver:
+
+  LCD GND → Breadboard ground line
+  LCD Vcc → Arduino pin 5V
+  LCD SDA → Breadboard SDA line
+  LCD SCL → Breadboard SCL line
+
+  Connections from ADXL345:
+
+  ADXL345 GND → Breadboard ground line
+  ADXL345 Vc  → Breadboard 3.3V line
+  ADXL345 SDA → Breadboard SDA line
+  ADXL345 SCL → Breadboard SCL line
+
+  Connections from the Arduino to the breadboard:
+
+  Arduino pin GND  → Breadboard ground line
+  Arduino pin 3.3V → Breadboard 3.3V line
+  Arduino pin A4   → Breadboard SDA line
+  Arduino pin A5   → Breadboard SCL line
+
+  Resistors connections:
+
+  1st 10K resistor → Between Breadboard SDA line and 3.3V line
+  2nd 10K resistor → Between Breadboard SCL line and 3.3V line
+
+* Code it
+  [[./7-level.ino]]
+
+* Show it
+  [[./20200623_214517_1.jpg]]

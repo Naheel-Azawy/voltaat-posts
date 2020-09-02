@@ -1,0 +1,56 @@
+#+TITLE: How to make a radar at home!
+#+AUTHOR: Naheel Faisal Kamal
+
+[[./doc-2020-05-20-22-28-33.gif]]
+
+* Know it
+  Ever seen the radars in the movies? Maybe you want to detect some UFO 🛸? Let's build our own radar at home with our starter kit!
+
+  The main components we will consider in this project are the ultrasonic sensor and the servo motor.
+
+  The ultrasonic sensor works by sending ultrasonic waves from once side and receiving it from the other. By measuring the time for the wave to go back to the sensor, it is possible to calculate the distance of the object facing the sensor.
+
+  Servo motors are also very simple. It needs only one wire to control it with a specific kind of signals called pulse width modulation (PWM). But regardless of the way it works internally,  we can simply use the library on the Arduino IDE where all what we need is to give it a specific angle to go to.
+
+* Wire it
+  There isn't anything complicated about the connections in this project. Simply, the ultrasonic sensor and the servo motors need to get powered and directly connected to the Arduino. However, you'll probably spend more time mounting the ultrasonic sensor on the servo motor and fixing the motor somehow to something stable... Personally, I took the easy way and taped everything 😅. The components needed are:
+
+  - Ultrasonic sensor
+  - Servo motor
+  - Jumper wires and Breadboard
+  - Arduino board and USB connector
+
+  [[./radar_bb_1.png]]
+
+  Connections from Arduino to Breadboard:
+
+  - Arduino GND pin → Breadboard ground line
+  - Arduino 5V pin  → Breadboard 5V line
+
+  Connections from Arduino to Ultrasonic Sensor:
+
+  - Ultrasonic GND pin  → Breadboard ground line
+  - Ultrasonic Vcc pin  → Breadboard 5V line
+  - Ultrasonic Echo pin → Arduino pin 2
+  - Ultrasonic Trig pin → Arduino pin 3
+
+  Connections Arduino to Servo:
+
+  - Servo motor brown wire  → Breadboard ground line
+  - Servo motor red wire    → Breadboard 5V line
+  - Servo motor orange wire → Arduino pin 4
+
+
+* Code it
+  The code in this project consists of two parts, an Arduino sketch and a Processing code. If you don't have Processing already installed, you can download it from [[https://processing.org/download/][here]]. It will be used to draw the radar interface.
+
+  Arduino sketch:
+  [[./4-radar.ino]]
+
+  Processing code:
+  [[./pr.pde]]
+
+  Note: the code is based on [[https://create.arduino.cc/projecthub/akshay6766/arduino-radar-with-processing-097202][this]] project with several modifications.
+
+* Show it
+  [[./20200520_221228_1.jpg]]

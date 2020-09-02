@@ -1,0 +1,11 @@
+| Title               | Article | Show it | Video |
+|---------------------+---------+---------+-------|
+| Sound activated LED | X       | X       |       |
+| Relay and PIR       | X       | X       |       |
+| Ultrasonic radar    | X       | X       | X     |
+| DHT with LCD        | X       | X       |       |
+| RFID and servo      | X       | X       | X     |
+| Accelerometer level | X       | X       | X     |
+| Alarm system        |         | X       |       |
+| GPS                 |         | X       |       |
+

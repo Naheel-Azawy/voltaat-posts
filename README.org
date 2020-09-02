@@ -1,0 +1,2 @@
+* Voltaat Posts
+  Few stuff I post on [[https://www.learn.voltaat.com/][Voltaat learn]] from time to time. Mostly for beginners but also useful for quick reference.
