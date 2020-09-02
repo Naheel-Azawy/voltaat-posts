@@ -40,7 +40,6 @@
   - Servo motor red wire    → Breadboard 5V line
   - Servo motor orange wire → Arduino pin 4
 
-
 * Code it
   The code in this project consists of two parts, an Arduino sketch and a Processing code. If you don't have Processing already installed, you can download it from [[https://processing.org/download/][here]]. It will be used to draw the radar interface.
 

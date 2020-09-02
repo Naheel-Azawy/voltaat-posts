@@ -16,21 +16,21 @@
 
   Connections from the Arduino to the breadboard:
 
-  Arduino pin GND → Breadboard ground line
-  Arduino pin 5V  → Breadboard 5V line
+  - Arduino pin GND → Breadboard ground line
+  - Arduino pin 5V  → Breadboard 5V line
 
   Connections from the LCD I2C driver:
 
-  LCD GND → Breadboard ground line
-  LCD Vcc → Breadboard 5V line
-  LCD SDA → Arduino pin A4
-  LCD SCL → Arduino pin A5
+  - LCD GND → Breadboard ground line
+  - LCD Vcc → Breadboard 5V line
+  - LCD SDA → Arduino pin A4
+  - LCD SCL → Arduino pin A5
 
   Connections from the DHT sensor:
 
-  DHT GND    → Breadboard ground line
-  DHT Vcc    → Breadboard 5V line
-  DHT Signal → Arduino pin 2
+  - DHT GND    → Breadboard ground line
+  - DHT Vcc    → Breadboard 5V line
+  - DHT Signal → Arduino pin 2
 
 * Code it
   [[./5-dht.ino]]

@@ -28,14 +28,14 @@
 
   Connections:
 
-  Arduino pin GND                      → Breadboard ground line
-  Arduino pin 5V                       → Breadboard 5V line
-  PIR motion sensor 1st pin from right → Breadboard ground line
-  PIR motion sensor 1st pin from left  → Breadboard 5V line
-  PIR motion sensor Middle pin         → Arduino pin 7
-  Relay GND pin                        → Breadboard ground line
-  Relay VCC pin                        → Breadboard 5V line
-  Relay Signal pin (far right pin)     → Arduino pin 6
+  - Arduino pin GND                      → Breadboard ground line
+  - Arduino pin 5V                       → Breadboard 5V line
+  - PIR motion sensor 1st pin from right → Breadboard ground line
+  - PIR motion sensor 1st pin from left  → Breadboard 5V line
+  - PIR motion sensor Middle pin         → Arduino pin 7
+  - Relay GND pin                        → Breadboard ground line
+  - Relay VCC pin                        → Breadboard 5V line
+  - Relay Signal pin (far right pin)     → Arduino pin 6
 
   This is of course in addition to connecting the bulb to the relay and the wall socket. But wait! Better to try the code first before connecting it to the socket. Once all is done and the connections are surely perfect, then carefully plug it.
 

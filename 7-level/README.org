@@ -24,29 +24,29 @@
 
   Connections from the LCD I2C driver:
 
-  LCD GND → Breadboard ground line
-  LCD Vcc → Arduino pin 5V
-  LCD SDA → Breadboard SDA line
-  LCD SCL → Breadboard SCL line
+  - LCD GND → Breadboard ground line
+  - LCD Vcc → Arduino pin 5V
+  - LCD SDA → Breadboard SDA line
+  - LCD SCL → Breadboard SCL line
 
   Connections from ADXL345:
 
-  ADXL345 GND → Breadboard ground line
-  ADXL345 Vc  → Breadboard 3.3V line
-  ADXL345 SDA → Breadboard SDA line
-  ADXL345 SCL → Breadboard SCL line
+  - ADXL345 GND → Breadboard ground line
+  - ADXL345 Vc  → Breadboard 3.3V line
+  - ADXL345 SDA → Breadboard SDA line
+  - ADXL345 SCL → Breadboard SCL line
 
   Connections from the Arduino to the breadboard:
 
-  Arduino pin GND  → Breadboard ground line
-  Arduino pin 3.3V → Breadboard 3.3V line
-  Arduino pin A4   → Breadboard SDA line
-  Arduino pin A5   → Breadboard SCL line
+  - Arduino pin GND  → Breadboard ground line
+  - Arduino pin 3.3V → Breadboard 3.3V line
+  - Arduino pin A4   → Breadboard SDA line
+  - Arduino pin A5   → Breadboard SCL line
 
   Resistors connections:
 
-  1st 10K resistor → Between Breadboard SDA line and 3.3V line
-  2nd 10K resistor → Between Breadboard SCL line and 3.3V line
+  - 1st 10K resistor → Between Breadboard SDA line and 3.3V line
+  - 2nd 10K resistor → Between Breadboard SCL line and 3.3V line
 
 * Code it
   [[./7-level.ino]]
