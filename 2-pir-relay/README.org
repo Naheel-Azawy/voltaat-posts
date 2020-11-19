@@ -1,5 +1,6 @@
 #+TITLE: Light up the room with motion using PIR and relay 💡
 #+AUTHOR: Naheel Faisal Kamal
+#+DATE: November 19, 2020
 
 * Know it
   Imagine you enter a room. The room is dark and no one is inside. Once you step inside, the room lights up! What kind of magic is that!

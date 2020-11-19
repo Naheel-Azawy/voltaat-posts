@@ -1,5 +1,6 @@
 #+TITLE: Build a mini weather station ☂️
 #+AUTHOR: Naheel Faisal Kamal
+#+DATE: September 2, 2020
 
 * Know it
   To build our tiny weather station, a temperature and humidity sensor is needed. For our case, we will use the DHT11 sensor and connect it to an LCD screen to display the readings. This allows us to see the temperature and humidity and calculate the heat index. You can pick between Celsius and Fahrenheit too!

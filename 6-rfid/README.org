@@ -1,5 +1,6 @@
 #+TITLE: Secure lock with RFID 🔒
 #+AUTHOR: Naheel Faisal Kamal
+#+DATE: September 2, 2020
 
 [[./video_2020-06-17_02-38-59.mp4.gif]]
 [[https://youtu.be/Oa1utVZ7oro][Video]]

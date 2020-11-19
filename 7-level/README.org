@@ -1,5 +1,6 @@
 #+TITLE: Use an accelerometer to build a level
 #+AUTHOR: Naheel Faisal Kamal
+#+DATE: September 2, 2020
 
 [[./doc_2020-06-23_21-42-12.mp4.gif]]
 

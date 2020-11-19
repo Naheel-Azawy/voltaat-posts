@@ -1,5 +1,6 @@
 #+TITLE: Clap to light up 👏
 #+AUTHOR: Naheel Faisal Kamal
+#+DATE: September 2, 2020
 
 * Know it
   Do you have a project where you need to turn something on and off? Maybe use a switch and the problem is solved... But... Boring... How about controlling it by clapping!
