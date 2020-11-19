@@ -1,0 +1,70 @@
+#!/usr/bin/env node
+
+const fs = require("fs");
+const { execSync } = require('child_process');
+
+let Org;
+try {
+    Org = require("./org-js/lib/org.js");
+} catch (e) {
+    console.log("Clonning org.js...");
+    execSync("git clone https://github.com/jeansch/org-js");
+    console.log("Run the script again");
+    process.exit();
+}
+
+function gen_html(file) {
+    let dirname = file.match(/.*\//)[0];
+
+    // read the org file and add the options
+    let org = fs.readFileSync(file).toString();
+    org = "#+OPTIONS: toc:nil num:nil\n" + org;
+
+    // inline source files
+    for (let m of org.matchAll(/\[\[(.+\.(pde|ino|c|cpp|h|hpp))\]\]/g)) {
+        let line = m[0], file = `${dirname}/${m[1]}`;
+        let src = fs.readFileSync(file).toString();
+        src = `#+begin_src c\n${src}\n#+end_src\n`;
+        org = org.replace(line, src);
+    }
+
+    // build the html file
+    let parser = new Org.Parser();
+    let orgDocument = parser.parse(org);
+    let orgHTMLDocument = orgDocument.convert(Org.ConverterHTML, {});
+    let html = orgHTMLDocument.toString();
+    html = `
+<html>
+    <head>
+        <link rel="stylesheet" type="text/css" href="../styles.css">
+        <link rel="stylesheet" type="text/css" href="../prism.css">
+        <script src="../prism.js"></script>
+    </head>
+    <body>
+        ${html}
+    </body>
+</html>`;
+    fs.writeFileSync(`${file}.html`, html);
+
+    return /#\+TITLE: (.+)/g.exec(org)[1];
+}
+
+function main() {
+    let index = `<html><head>
+        <link rel="stylesheet" type="text/css" href="styles.css">
+    </head><body><ul>`;
+    let orgs = execSync("find -wholename './*/*README.org'")
+        .toString().trim().split("\n");
+    for (let org of orgs) {
+        let title = gen_html(org);
+        console.log(title);
+        console.log(org);
+        console.log("");
+
+        index += `<li><a href="${org}.html">${title}</a></li>`;
+    }
+    index += "</ul></body></html>";
+    fs.writeFileSync("index.html", index);
+}
+
+main();

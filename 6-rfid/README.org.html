@@ -1,0 +1,215 @@
+
+<html>
+    <head>
+        <link rel="stylesheet" type="text/css" href="../styles.css">
+        <link rel="stylesheet" type="text/css" href="../prism.css">
+        <script src="../prism.js"></script>
+    </head>
+    <body>
+        <h1>Secure lock with RFID 🔒</h1>
+
+<p><img src="./video_2020-06-17_02-38-59.mp4.gif" alt="./video_2020-06-17_02-38-59.mp4.gif" title="./video_2020-06-17_02-38-59.mp4.gif"/>
+<a href="https://youtu.be/Oa1utVZ7oro">Video</a></p>
+<h2>Know it</h2>
+Many workplaces usually have doors that can only unlocked with a staff ID card. From experience... I can tell you that one of the coolest parts of having a job in such places is that moment when many people can&#39;t pass that door and you take your card like a super hero, unlock the door, and no body can stop you 😎<p>What is used in such doors is what&#39;s known as RFID. For our demo, we will be using the MFRC522 with tow or more cards (or tags). Those cards have a tiny chip that store the data in them and a coil to send and receive data. One cool trick that you can try is to pass a flash light behind the card to see the internals. It also worth mentioning that there are two well known types of RFID, High Frequency RFID and Low Frequency RFID. The point is, make sure you know which type you need for your project.</p>
+<p><img src="./video_2020-06-17_03-27-46.mp4.gif" alt="./video_2020-06-17_03-27-46.mp4.gif" title="./video_2020-06-17_03-27-46.mp4.gif"/></p>
+<p>To control the lock, we will be using a servo motor (check THIS for more details) and to display the messages we will be using a 16x2 LCD display (check THIS for more details).</p>
+<h2>Wire it</h2>
+This time bunch of jumper wires are needed. So make sure you have enough of them. Here are the components needed:<ul><li>MFRC522 RFID</li>
+<li>RFID cards (or tags)</li>
+<li>16x2 LCD with I2C driver</li>
+<li>Servo motor</li>
+<li>Jumper wires and Breadboard</li>
+<li>Arduino board and USB connector</li>
+</ul>
+<p><img src="./rfid_bb.png" alt="./rfid_bb.png" title="./rfid_bb.png"/></p>
+<p>Connections from the Arduino to the breadboard:</p>
+<ul><li>Arduino GND pin → Breadboard ground line</li>
+<li>Arduino 5V pin  → Breadboard 5V line</li>
+</ul>
+<p>Connections from MFRC522:</p>
+<ul><li>MFRC522 GND     → Breadboard ground line</li>
+<li>MFRC522 Vcc     → Breadboard 5V line</li>
+<li>MFRC522 RST     → Arduino pin 9</li>
+<li>MFRC522 SDA(SS) → Arduino pin 10</li>
+<li>MFRC522 MOSI    → Arduino pin 11</li>
+<li>MFRC522 MISO    → Arduino pin 12</li>
+<li>MFRC522 SCK     → Arduino pin 13</li>
+</ul>
+<p>Connections from the servo motor:</p>
+<ul><li>Servo motor brown wire  → Breadboard ground line</li>
+<li>Servo motor red wire    → Breadboard 5V line</li>
+<li>Servo motor orange wire → Arduino pin 4</li>
+</ul>
+<p>Connections from the LCD I2C driver:</p>
+<ul><li>LCD GND → Breadboard ground line</li>
+<li>LCD Vcc → Breadboard 5V line</li>
+<li>LCD SDA → Arduino pin A4</li>
+<li>LCD SCL → Arduino pin A5</li>
+</ul>
+<h2>Code it</h2>
+<pre class="prettyprint"><code class="language-c">/*
+  RFID lock
+
+  Tutorial link: <a href="https://www.learn.voltaat.com/post/rfid">https://www.learn.voltaat.com/post/rfid</a>
+
+  This is an Arduino sketch that controls a servo motor acting as a lock
+  based on the RFID scanned card. It also displays the person&#39;s name on an LCD screen.
+  The names and IDs can be changed in the code below.
+
+  Components Needed:
+  1. MFRC522 RFID ...........x1
+  2. RFID cards (or tags) ...x2 or more
+  3. 16x2 LCD ...............x1
+  4. Servo motor ............x1
+
+  Connections:
+  Arduino GND pin         → Breadboard ground line
+  Arduino 5V pin          → Breadboard 5V line
+  MFRC522 GND             → Breadboard ground line
+  MFRC522 Vcc             → Breadboard 5V line
+  MFRC522 RST             → Arduino pin 9
+  MFRC522 SDA(SS)         → Arduino pin 10
+  MFRC522 MOSI            → Arduino pin 11
+  MFRC522 MISO            → Arduino pin 12
+  MFRC522 SCK             → Arduino pin 13
+  Servo motor brown wire  → Breadboard ground line
+  Servo motor red wire    → Breadboard 5V line
+  Servo motor orange wire → Arduino pin 4
+  LCD GND                 → Breadboard ground line
+  LCD Vcc                 → Breadboard 5V line
+  LCD SDA                 → Arduino pin A4
+  LCD SCL                 → Arduino pin A5
+
+*/
+
+#include &#60;SPI.h&#62;               // Serial communication library
+#include &#60;MFRC522.h&#62;           // RFID library
+#include &#60;LiquidCrystal_I2C.h&#62; // LCD library
+#include &#60;Servo.h&#62;             // Servo library
+
+#define SERV_PIN  4 // Servo motor pin
+#define RST_PIN   9 // Configurable, see typical pin layout above
+#define SS_PIN   10 // Configurable, see typical pin layout above
+
+// Structure of a person instance
+typedef struct {
+  String name;
+  String id;
+} person;
+
+// List of the allowed people and their IDs (change them)
+const person ALLOWED_IDS[] = {{&#34;Alice&#34;, &#34;04 E0 35 2B&#34;},
+                              {&#34;Bob&#34;,   &#34;7B D0 85 0D&#34;}};
+
+// MFRC522 instance
+MFRC522 mfrc522(SS_PIN, RST_PIN);
+
+// LCD instance
+LiquidCrystal_I2C lcd(0x27, 16, 2);
+
+// Servo motor instance
+Servo servo;
+
+// Commands inside void setup run once
+void setup() {
+
+  Serial.begin(9600);	   // Start the serial monitor
+  lcd.init();            // Initialize the LCD screen
+  lcd.backlight();       // Turn on backlight on the LCD
+	SPI.begin();			     // Init SPI bus
+	mfrc522.PCD_Init();	   // Init MFRC522
+  servo.attach(SERV_PIN); // Set the Servo motor pin
+
+  // Prompt the user to scan the ID
+	Serial.println(&#34;Scan your card&#34;);
+  lcd.print(&#34;Scan your card&#34;);
+
+}
+
+// Commands inside void loop run forever
+void loop() {
+
+  // Rest the motor lock
+  servo.write(0);
+
+	// Reset the loop if no new card present on the sensor/reader. This saves the entire process when idle.
+	if (!mfrc522.PICC_IsNewCardPresent()) {
+		return;
+	}
+
+	// Select one of the cards
+	if (!mfrc522.PICC_ReadCardSerial()) {
+		return;
+	}
+
+  // Loading the ID
+  String content= &#34;&#34;;
+  byte letter;
+  for (byte i = 0; i &#60; mfrc522.uid.size; i++) {
+    content.concat(String(mfrc522.uid.uidByte[i] &#60; 0x10 ? &#34; 0&#34; : &#34; &#34;));
+    content.concat(String(mfrc522.uid.uidByte[i], HEX));
+  }
+  content.toUpperCase();
+
+  // Checking if the read ID is one of the allowed IDs
+  bool allowed = false;
+  for (int i = 0; i &#60; sizeof(ALLOWED_IDS) / sizeof(person); ++i) {
+
+    // Is allowed
+    if (content.substring(1) == ALLOWED_IDS[i].id) {
+
+      // Print to serial monitor
+      Serial.print(&#34;Welcome &#34;);
+      Serial.println(ALLOWED_IDS[i].name);
+
+      // Print to LCD
+      lcd.clear();
+      lcd.setCursor(0, 0);
+      lcd.print(&#34;Welcome&#34;);
+      lcd.setCursor(0, 1);
+      lcd.print(ALLOWED_IDS[i].name);
+
+      // Open the lock (move the servo motor)
+      servo.write(90);
+
+      // Set the flag
+      allowed = true;
+
+      // Wait for 2 seconds
+      delay(2000);
+
+    }
+
+  }
+
+  // Not allowed
+  if (!allowed) {
+
+    // Print to serial monitor
+    Serial.println(&#34;Access denied&#34;);
+
+    // Print to LCD
+    lcd.clear();
+    lcd.setCursor(0, 0);
+    lcd.print(&#34;Access denied&#34;);
+
+    // Wait for 2 seconds
+    delay(2000);
+
+  }
+
+  // Wait for one seconds
+  delay(1000);
+
+  // Reset the LCD screen
+  lcd.clear();
+  lcd.print(&#34;Scan your card&#34;);
+
+}
+</code>
+</pre>
+<h2>Show it</h2>
+<img src="./20200617_025127_1.jpg" alt="./20200617_025127_1.jpg" title="./20200617_025127_1.jpg"/>
+    </body>
+</html>

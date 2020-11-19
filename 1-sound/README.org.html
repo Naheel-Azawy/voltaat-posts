@@ -1,0 +1,91 @@
+
+<html>
+    <head>
+        <link rel="stylesheet" type="text/css" href="../styles.css">
+        <link rel="stylesheet" type="text/css" href="../prism.css">
+        <script src="../prism.js"></script>
+    </head>
+    <body>
+        <h1>Clap to light up 👏</h1>
+
+<h2>Know it</h2>
+Do you have a project where you need to turn something on and off? Maybe use a switch and the problem is solved... But... Boring... How about controlling it by clapping!<p>A sound sensor can be used for that like the one in the picture below. This sensor works by simple firing a signal at the D0 pin once the sound level is above a certain level. This level can be tuned by rotating the golden screw left and right until it&#39;s suitable for your surrounding.</p>
+<p><img src="./microphone-voice-sound-sensor-module-500x500.jpg" alt="./microphone-voice-sound-sensor-module-500x500.jpg" title="./microphone-voice-sound-sensor-module-500x500.jpg"/></p>
+<h2>Wire it</h2>
+The wiring here is a piece of cake! First, make sure you have the following below and connect is shown in the picture.<ul><li>LED</li>
+<li>1K Ω resistor</li>
+<li>Jumper wires</li>
+<li>Arduino board and USB connector</li>
+</ul>
+<p><img src="./sound_bb_1.png" alt="./sound_bb_1.png" title="./sound_bb_1.png"/></p>
+<p>Connections:</p>
+<ul><li>Sound sensor G   → Arduino pin GND</li>
+<li>Sound sensor +   → Arduino pin 5V</li>
+<li>Sound sensor D0  → Arduino pin 2</li>
+<li>LED              → Arduino pin 3</li>
+</ul>
+<h2>Code it</h2>
+<pre class="prettyprint"><code class="language-c">/*
+Sound controlled LED
+
+Tutorial link: <a href="https://www.learn.voltaat.com/post/sound">https://www.learn.voltaat.com/post/sound</a>
+
+This is an Arduino sketch turns on an LED once with clapping
+
+Components Needed:
+1. Sound sensor ....x1
+2. LED .............x1
+
+Connections:
+Sound sensor G  → Arduino pin GND
+Sound sensor +  → Arduino pin 5V
+Sound sensor D0 → Arduino pin 2
+LED             → Arduino pin 3
+
+*/
+
+#define SOUND_PIN 2 // Pin of the sound sensor
+#define LED_PIN   3 // Pin of the LED
+
+// Keep the status of the led to be changed later
+bool led_status = false;
+
+// Commands inside void setup run once
+void setup() {
+
+  Serial.begin(9600);        // Start the serial monitor
+  pinMode(SOUND_PIN, INPUT); // Set Pin connected to the sound sensor as an INPUT
+  pinMode(LED_PIN, OUTPUT);  // Set Pin connected to the LED as an OUTPUT
+
+}
+
+// Commands inside void loop run forever
+void loop() {
+
+  // If sound detected
+  if (digitalRead(SOUND_PIN) == HIGH){
+
+    // If the LED was off
+    if (led_status == false) {
+
+      digitalWrite(LED_PIN, HIGH); // Turn LED on
+      led_status = true;           // Set the LED status
+      Serial.println(&#34;Turn LED on&#34;);
+
+    } else { // Otherwise, if LED was on
+
+      digitalWrite(LED_PIN, LOW); // Turn LED off
+      led_status = false;         // Set the LED status
+      Serial.println(&#34;Turn LED off&#34;);
+
+    }
+
+  }
+
+}
+</code>
+</pre>
+<h2>Show it</h2>
+<img src="./20200517_065559_1.jpg" alt="./20200517_065559_1.jpg" title="./20200517_065559_1.jpg"/>
+    </body>
+</html>
