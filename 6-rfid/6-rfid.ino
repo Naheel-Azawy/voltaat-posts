@@ -1,7 +1,7 @@
 /*
   RFID lock
 
-  Tutorial link: https://www.learn.voltaat.com/post/rfid
+  Tutorial link: https://www.learn.voltaat.com/post/secure-lock-with-rfid
 
   This is an Arduino sketch that controls a servo motor acting as a lock
   based on the RFID scanned card. It also displays the person's name on an LCD screen.

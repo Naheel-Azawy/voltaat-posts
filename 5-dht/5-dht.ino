@@ -1,7 +1,7 @@
 /*
 Temperature and humidity station
 
-Tutorial link: https://www.learn.voltaat.com/post/dht
+Tutorial link: https://www.learn.voltaat.com/post/build-a-mini-weather-station
 
 This is an Arduino sketch reads the temperature and humidity and calculates the heat index. It also displays the information on an LCD screen
 

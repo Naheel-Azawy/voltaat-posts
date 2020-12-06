@@ -1,7 +1,7 @@
 /*
 Level using accelerometer
 
-Tutorial link: https://www.learn.voltaat.com/post/level
+Tutorial link: https://www.learn.voltaat.com/post/use-an-accelerometer-to-build-a-level
 
 This is an Arduino sketch that simulates a level using an ADXL345 accelerometer and displaying it on an LCD screen
 

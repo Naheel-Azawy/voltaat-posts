@@ -1,0 +1,41 @@
+* Mine
+** TODO sound
+** TODO pir-relay
+** TODO radar
+** DONE dht
+   CLOSED: [2020-12-06 Sun 23:50]
+** DONE rfid
+   CLOSED: [2020-12-06 Sun 23:50]
+** DONE level
+   CLOSED: [2020-12-06 Sun 23:50]
+
+* Old ones
+** TODO relay
+** TODO soil moisture
+** TODO lcd char display
+** TODO servo
+** TODO buzzer
+** TODO ultrasonic
+** TODO rgb led
+** TODO push button
+** TODO dht11
+** TODO led blink
+
+* Kinda done by others
+** TODO Stepper motor control
+** TODO Simple alarm system
+** TODO How to use breadboard
+** TODO Sound sensor
+** TODO MPU6050
+** TODO IR receiver and remote
+** TODO LDR
+** TODO keypad 16
+** TODO GPS
+
+* More
+** TODO potentiometer
+** TODO 5v stepper motor
+** TODO HC-05 and android
+** TODO two nrf24 talking
+** TODO dfplayer
+
