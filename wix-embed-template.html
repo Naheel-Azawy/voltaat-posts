@@ -1,36 +1,7 @@
 <div>
+    <script src="https://raw.githubusercontent.com/Naheel-Azawy/voltaat-posts/master/blorgify-embed.js"></script>
     <div id="blorgify-embed"></div>
     <script>
-     (function() {
-         /* CHANGE URL BELOW FROM https://naheel-azawy.github.io/voltaat-posts */
-         var url = "https://naheel-azawy.github.io/voltaat-posts/5-dht/";
-         url = url.replace(/\/(index.html)?$/, "")
-         var parent = url.split("/"); parent.pop(); parent = parent.join("/");
-         var el = document.getElementById("blorgify-embed");
-
-         var xmlhttp = new XMLHttpRequest();
-         var status = 0;
-         xmlhttp.onreadystatechange = function() {
-             if (xmlhttp.readyState == 4) {
-                 status = xmlhttp.status;
-             }
-             if (xmlhttp.readyState == 4 && status == 200) {
-                 var html = '<base href="' + url + '/" />\n' +
-                            xmlhttp.responseText;
-                 html = html.replace(/<h1>.+<\/h1>/, "");
-                 el.innerHTML = html;
-                 var po = document.createElement('script');
-                 po.type = 'text/javascript';
-                 po.src = parent + "/prism.js";
-                 document.body.appendChild(po);
-             }
-         };
-         try { 
-             xmlhttp.open("GET", url, true);
-             xmlhttp.send();
-         } catch(err) {
-             el.innerHTML = "Failed loading " + url;
-         }
-     })();
+     blorgify_embed("https://naheel-azawy.github.io/voltaat-posts/5-dht/");
     </script>
 </div>
