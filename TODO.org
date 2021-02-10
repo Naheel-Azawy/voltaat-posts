@@ -1,7 +1,10 @@
 * Mine
-** TODO sound
-** TODO pir-relay
-** TODO radar
+** DONE sound
+   CLOSED: [2021-02-10 Wed 21:06]
+** DONE pir-relay
+   CLOSED: [2021-02-10 Wed 21:06]
+** DONE radar
+   CLOSED: [2021-02-10 Wed 21:06]
 ** DONE dht
    CLOSED: [2020-12-06 Sun 23:50]
 ** DONE rfid

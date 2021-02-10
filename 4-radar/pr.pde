@@ -1,7 +1,7 @@
 /*
 Ultrasonic Radar
 
-Tutorial link: https://www.learn.voltaat.com/post/radar
+Tutorial link: https://www.learn.voltaat.com/post/arduino-radar
 
 This processing code visualizes a radar using the ultrasonic signals read from the Arduino. This code comes with a corresponding Arduino sketch with the connections and components details.
 

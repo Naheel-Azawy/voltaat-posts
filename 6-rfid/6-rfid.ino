@@ -64,15 +64,15 @@ Servo servo;
 // Commands inside void setup run once
 void setup() {
 
-  Serial.begin(9600);	   // Start the serial monitor
+  Serial.begin(9600);    // Start the serial monitor
   lcd.init();            // Initialize the LCD screen
   lcd.backlight();       // Turn on backlight on the LCD
-	SPI.begin();			     // Init SPI bus
-	mfrc522.PCD_Init();	   // Init MFRC522
+  SPI.begin();           // Init SPI bus
+  mfrc522.PCD_Init();    // Init MFRC522
   servo.attach(SERV_PIN); // Set the Servo motor pin
 
   // Prompt the user to scan the ID
-	Serial.println("Scan your card");
+  Serial.println("Scan your card");
   lcd.print("Scan your card");
 
 }
@@ -83,15 +83,15 @@ void loop() {
   // Rest the motor lock
   servo.write(0);
 
-	// Reset the loop if no new card present on the sensor/reader. This saves the entire process when idle.
-	if (!mfrc522.PICC_IsNewCardPresent()) {
-		return;
-	}
+  // Reset the loop if no new card present on the sensor/reader. This saves the entire process when idle.
+  if (!mfrc522.PICC_IsNewCardPresent()) {
+    return;
+  }
 
-	// Select one of the cards
-	if (!mfrc522.PICC_ReadCardSerial()) {
-		return;
-	}
+  // Select one of the cards
+  if (!mfrc522.PICC_ReadCardSerial()) {
+    return;
+  }
 
   // Loading the ID
   String content= "";

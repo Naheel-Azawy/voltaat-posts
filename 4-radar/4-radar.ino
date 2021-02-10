@@ -1,7 +1,7 @@
 /*
 Ultrasonic Radar
 
-Tutorial link: https://www.learn.voltaat.com/post/radar
+Tutorial link: https://www.learn.voltaat.com/post/arduino-radar
 
 This is an Arduino sketch controls an ultrasonic sensor with a servo motor to act like a radar. This sketch comes with a corresponding processing code.
 
